@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "version": "0.5.0-rc.2",
+  "status": "local_candidate",
+  "canonical_version": "0.7.3",
+  "endpoint": "https://platform.lensmor.com/mcp",
+  "mode": "read_only_research",
+  "skills": [
+    "research-events",
+    "research-exhibitors",
+    "research-people",
+    "event-fit-scorer",
+    "event-account-prioritizer",
+    "event-buying-committee-mapper"
+  ],
+  "public_scope_note": "This public evaluation bundle is for read-only research with existing account rights. Preserve the current scope and deliver available results. Paid purchases, reverse-lookup execution and external writes are outside this bundle. When another action Skill is mentioned but not installed, explain that follow-up separately; do not invent its availability. A Skill is not an authorization boundary: the server and client still enforce permissions. For drafts, use the existing booth-invitation-writer with the facts already available."
+}

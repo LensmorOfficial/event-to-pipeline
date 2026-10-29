@@ -1,0 +1,21 @@
+{
+  "fictional": true,
+  "query": {"event_id": "fictional-medtech-2027", "country": "Germany", "pageSize": 2, "personnelLimit": 0},
+  "pages": [
+    {
+      "items": [
+        {"id": "demo-1", "companyName": "Fictional Surgical Systems", "website": "https://surgical.example", "country": "Germany", "industry": "Medical equipment", "employeeCount": 120, "matched_event_ids": ["fictional-medtech-2027"]},
+        {"id": "demo-2", "companyName": "Fictional Imaging Labs", "website": "https://imaging.example", "country": "Germany", "industry": "Medical imaging", "employeeCount": null, "matched_event_ids": ["fictional-medtech-2027"]}
+      ],
+      "total": 3, "page": 1, "pageSize": 2, "totalPages": 2, "hasMore": true,
+      "semantics": {"accessMode": "full", "counts": {"actualTotal": 3, "visibleTotal": 3, "remainingLockedCount": 0}, "pageState": {"requestedPage": 1, "accessible": true, "maxAccessiblePage": 2}}
+    },
+    {
+      "items": [
+        {"id": "demo-3", "companyName": "Fictional Theatre Software", "website": "https://theatre.example", "country": "Germany", "industry": "Healthcare software", "matched_event_ids": ["fictional-medtech-2027"]}
+      ],
+      "total": 3, "page": 2, "pageSize": 2, "totalPages": 2, "hasMore": false,
+      "semantics": {"accessMode": "full", "counts": {"actualTotal": 3, "visibleTotal": 3, "remainingLockedCount": 0}, "pageState": {"requestedPage": 2, "accessible": true, "maxAccessiblePage": 2}}
+    }
+  ]
+}

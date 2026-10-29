@@ -1,0 +1,13 @@
+interface:
+  display_name: "Prioritize Event Accounts"
+  short_description: "Rank event companies against an ICP with evidence"
+  default_prompt: "Use $event-account-prioritizer to rank companies at an event against my ICP and recommend next actions."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "lensmor"
+      description: "Lensmor event and prospect intelligence"
+      transport: "streamable_http"
+      url: "https://platform.lensmor.com/mcp"
+policy:
+  allow_implicit_invocation: true

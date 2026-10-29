@@ -1,0 +1,5 @@
+test-results
+__pycache__/
+.qa-deps/
+.venv/
+dist/

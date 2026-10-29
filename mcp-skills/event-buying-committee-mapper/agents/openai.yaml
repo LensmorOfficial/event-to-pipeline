@@ -1,0 +1,13 @@
+interface:
+  display_name: "Map Event Buying Committees"
+  short_description: "Find account stakeholders and buying-role gaps"
+  default_prompt: "Use $event-buying-committee-mapper to map the decision makers and missing roles for this target account."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "lensmor"
+      description: "Lensmor test company and event contact research"
+      transport: "streamable_http"
+      url: "https://platform.lensmor.com/mcp"
+policy:
+  allow_implicit_invocation: true

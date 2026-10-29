@@ -1,0 +1,17 @@
+{
+  "data_mode": "synthetic",
+  "live_data": false,
+  "request": "Prepare English email drafts for the two selected contacts from worked example 2. Offer a short exchange on supplier evaluation criteria. Actual attendance and booth information are unknown.",
+  "sender_facts": "The fictional sender, Casey at Example Vendor Research, offers software that organizes supplier evaluation notes. No clinical benefit, savings percentage or customer case study is supplied.",
+  "selected_contact_ids": ["sample-person-a", "sample-person-b"],
+  "drafts": {
+    "sample-person-a": {
+      "subject": "supplier evaluation notes",
+      "body": "Hi Alex,\n\nYour engineering role at Example Surgical Systems makes supplier evaluation a relevant topic to explore. Our software organizes supplier evaluation notes so teams can compare documented requirements.\n\nWould a short exchange on the criteria your team uses to assess potential suppliers be useful?\n\nCasey\nExample Vendor Research"
+    },
+    "sample-person-b": {
+      "subject": "comparing supplier criteria",
+      "body": "Hi Robin,\n\nThe supplied product brief describes robotic surgical instruments at Example Precision Robotics. In a product engineering role, you may have a useful perspective on how teams document supplier criteria.\n\nOur software organizes those evaluation notes. Would comparing approaches in a short conversation be useful?\n\nCasey\nExample Vendor Research"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+# Candidate configuration fragment. Merge into the selected trusted project.
+# Authenticate using the current client/server policy.
+[mcp_servers.lensmor]
+url = "https://platform.lensmor.com/mcp"
+enabled_tools = [
+  "discover_event_contacts",
+  "get_event",
+  "get_event_exhibitor_facets",
+  "get_event_insights",
+  "list_event_exhibitors",
+  "research_event_contacts",
+  "research_event_exhibitors",
+  "resolve_company_contacts",
+  "resolve_event",
+  "search_companies",
+  "search_company_contacts",
+  "search_event_contacts",
+  "search_events_by_insights",
+  "search_events_v2",
+  "search_people_for_event_lookup",
+]
+
+# Only for an explicitly supported bearer-token connection:
+# bearer_token_env_var = "LENSMOR_MCP_TOKEN"
+# Set its value outside this file, using the client secret settings or process environment.

@@ -1,0 +1,177 @@
+---
+name: booth-invitation-writer
+description: Draft pre-show booth invitations and meeting outreach using verified product claims and recipient context.
+license: MIT
+metadata:
+  version: 0.5.0
+  stage: pre-show
+  category: outreach
+  homepage: https://github.com/LensmorOfficial/trade-show-skills/tree/main/booth-invitation-writer
+---
+
+# Booth Invitation Writer
+
+Generate professional, personalized pre-show invitation emails that get replies — not generic "visit us at booth #123" blasts.
+
+When this skill triggers:
+- Use it for pre-show invites, reminder emails, VIP outreach, and meeting-booking sequences tied to a specific event
+- Use it after the show, booth message, and offer are already clear enough to invite someone credibly
+- Do not use it for post-show follow-up; use `post-show-followup` for that
+
+## Example Requests
+
+- Write a booth invite email
+- 帮我写展会邀请函
+- Messeeinladung schreiben
+- 招待メールを書く
+- escribir invitación a feria
+
+## Workflow
+
+### Step 1: Gather Context
+
+Extract from the user's request. Ask for anything critical that's missing.
+
+**Required:**
+- **Show name and dates**
+- **Booth number / location** (or "TBD" if not assigned yet)
+- **What they're showcasing** (new product, demo, solution area)
+
+**Helpful but optional:**
+- **Audience type**: prospects, existing customers, partners, press
+- **Tone**: formal/corporate, friendly/startup, technical
+- **Language**: default to English; support any language the user requests
+- **Primary CTA**: book a meeting, stop by the booth, attend a live demo, dinner invite
+- **Any special hook**: live demo, exclusive preview, giveaway, hosted meeting, cocktail event
+- **Company name and brief description**
+
+If the user provides minimal info (e.g., "write a booth invite for MEDICA, booth 5C42"), work with what you have and make reasonable assumptions — don't ask 10 questions.
+
+### Step 2: Choose the Right Template Pattern
+
+Match the audience and goal:
+
+**Cold prospect invite:**
+- Lead with their pain point or industry challenge, not your booth number
+- Mention something specific about why this show matters for their vertical
+- The booth visit is the CTA, not the subject line
+- Keep it under 150 words
+
+**Existing customer / warm contact:**
+- Reference the relationship ("Since we last spoke at [event]..." or "As you've been using [product]...")
+- Emphasize what's NEW — they already know you
+- Offer a specific time slot or priority access
+- Warmer tone, can be slightly longer
+
+**Partner / distributor:**
+- Focus on business opportunity and mutual benefit
+- Mention specific products or partnerships to discuss
+- Suggest a structured meeting rather than "stop by"
+
+**VIP / executive:**
+- Very short, respect their time
+- Exclusive angle — private demo, exec roundtable, dinner invite
+- Personal from a senior person at the company
+
+### Step 3: Write the Email
+
+Before drafting, build a private claim ledger:
+- **Allowed**: facts and claims stated by the user or returned by an explicitly cited source
+- **Missing**: product features, operational pains, customers, results, integrations, implementation details, and event logistics not in the allowed set
+
+Every sentence about a pain point, capability, integration, result, customer, or event detail must map to the allowed set. If it does not, remove it or replace it with a visible placeholder. Do not expand a broad phrase such as "reduces scheduling friction" into unprovided specifics such as double-bookings, real-time visibility, or integration with existing systems.
+
+**Sparse-proof fallback:** If the user supplied only the audience, product category, broad value proposition, show, and booth, use this conservative body pattern instead of enriching it:
+
+```text
+Hi [Name],
+
+At [Show], we're showing [product description exactly as supplied], designed to [value proposition exactly as supplied].
+
+If this is relevant to your priorities, would you be open to a [duration] conversation or demo at Booth [number]? I can tailor the discussion to your current process.
+
+Best,
+[Sender]
+```
+
+Do not add feature lists, detailed pain scenarios, audience beliefs, registration status, or promised outcomes to this fallback.
+
+Structure:
+
+```
+Subject: [Compelling, specific — NOT "Visit us at [show]!"]
+
+Hi [Name],
+
+[Opening: 1-2 sentences that connect to THEIR world, not yours]
+
+[Middle: What you're showing and why it matters TO THEM — 2-3 sentences max]
+
+[CTA: Specific next step — book a time, reply to confirm, register for demo slot]
+
+[Sign-off]
+[Name / Title / Company]
+```
+
+**Subject line rules:**
+- Mention the show name (people filter by this)
+- Add a specific hook, not generic excitement
+- Good: "MEDICA 2026: 15-min demo of [product] — want a slot?"
+- Good: "Exclusive first look at [product] — Booth 5C42 at Interpack"
+- Bad: "Visit us at MEDICA!" / "You're invited!" / "Don't miss us!"
+
+**Body rules:**
+- No corporate jargon ("leverage", "synergy", "holistic solution")
+- No walls of text — a booth invite should be scannable in 10 seconds
+- Include booth number and hall, but don't lead with it
+- If writing a sequence, each email should have a different angle (not just "reminder: we're at booth X")
+- Never invent customer names, case studies, certifications, integrations, quantified outcomes, or product capabilities. Use only facts the user supplied or evidence explicitly provided to the agent.
+- If a useful proof point is missing, write a visible placeholder such as `[verified customer result]` or omit the claim. Never turn a plausible benchmark into a company claim.
+- Treat show dates, halls, booth locations, and meeting availability as unverified unless supplied by the user or checked against an official source. Use `[date]`, `[hall]`, or `[time]` when needed.
+- Never infer an edition year from the current date or repository context. If the user did not provide a verified show date, keep timing relative (for example, "3–4 weeks before the show") and do not invent calendar send dates.
+- For healthcare demos, do not ask recipients to bring patient records or medical scans. Use synthetic demo data; any real-data workflow must be separately defined by the user.
+
+**Word count targets by audience:**
+- Cold prospect: 80-120 words (ruthlessly short — they don't know you yet)
+- Warm contact / customer: 120-180 words (more context is OK)
+- Partner / distributor: 150-200 words (business detail needed)
+- VIP / executive: 60-80 words (respect their time above all)
+
+### Step 4: Package the Output
+
+Return a compact outreach package:
+- **Primary email**
+- **A/B subject line variant**
+- **Optional follow-up email** (if the use case calls for it)
+- **Personalization checklist** — the 3-5 fields the sender should fill before sending
+- **Translation** if the user requested another language
+
+If writing a multi-email sequence, include a timing plan:
+```
+Email 1 (First touch): 4 weeks before show
+Email 2 (Follow-up):   1 week before show — different angle
+Email 3 (Day-of):      Morning of show day 1 — "we're here, booth X"
+```
+
+If the user asks for only one email, still include the A/B subject line and a short personalization checklist.
+
+### Step 5: Practical Tips
+
+Include 1-2 relevant tips:
+- Best send timing for pre-show emails (typically 3-4 weeks out for first touch, 1 week for reminder)
+- Personalization variables the user should fill in (marked with `[brackets]`)
+- If writing for a CRM/email tool, note any merge tag conventions
+- If the team also needs live-conversation prep, carry the same hook and CTA into `booth-script-generator` so the booth experience matches the email promise
+- For personalization, use user-supplied or current official exhibitor information and carry its source into the claim ledger
+
+## Quality Checks
+
+Before delivering results:
+- The CTA must match the audience and relationship; VIPs should not get low-value booth-walk-up CTAs
+- Do not fake familiarity or imply a prior conversation that did not happen
+- Do not fabricate social proof or performance claims; every customer, metric, certification, integration, and product capability must be user-supplied or explicitly sourced
+- Reject any draft sentence about a feature, operational pain, integration, result, customer, or event detail that cannot be mapped to the claim ledger
+- When proof is sparse, use the sparse-proof fallback rather than making the copy sound more specific through invented detail
+- Booth number and hall should appear, but should not be the first line or the only reason to meet
+- Subject lines should feel specific and credible, not hype-driven
+- If booth details are unknown, write `TBD` or omit them rather than inventing a location

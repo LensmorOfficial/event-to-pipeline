@@ -1,0 +1,6 @@
+* text=auto
+LICENSE -text
+scripts/export_exhibitors.py -text
+mcp-skills/** -text
+examples/**/output.md -text
+examples/**/*.csv -text

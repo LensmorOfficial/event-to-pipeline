@@ -1,0 +1,13 @@
+interface:
+  display_name: "Research Lensmor People"
+  short_description: "Find redacted contacts by event or company"
+  default_prompt: "Use $research-people to find relevant contacts by event or company."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "lensmor"
+      description: "Lensmor event and prospect intelligence"
+      transport: "streamable_http"
+      url: "https://platform.lensmor.com/mcp"
+policy:
+  allow_implicit_invocation: true

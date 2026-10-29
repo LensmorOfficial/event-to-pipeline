@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "lensmor": {
+      "type": "http",
+      "url": "https://platform.lensmor.com/mcp"
+    }
+  }
+}

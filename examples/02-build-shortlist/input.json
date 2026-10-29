@@ -1,0 +1,18 @@
+{
+  "data_mode": "synthetic",
+  "live_data": false,
+  "request": "Within the supplied fictional Example Medical Devices Expo 2027 records, find up to five surgical-robotics providers and relevant engineering contacts. Do not broaden the product requirement or unlock contact fields.",
+  "requested_limit": 5,
+  "companies": [
+    {"id":"sample-company-a","name":"Example Surgical Systems","website":"https://example.com/surgical-systems","industry":"Medical device manufacturing","hq":"Germany","employee_size":"51-200","linkedin_url":null,"qualification":"MATCH","evidence":"The supplied fictional description explicitly states that the company provides robot-assisted surgical systems."},
+    {"id":"sample-company-b","name":"Example Precision Robotics","website":"https://example.com/precision-robotics","industry":"Medical device manufacturing","hq":"Netherlands","employee_size":"201-500","linkedin_url":null,"qualification":"MATCH","evidence":"The supplied fictional product note explicitly describes robotic surgical instruments and control systems."},
+    {"id":"sample-company-c","name":"Example Robotics Research","website":"https://example.com/robotics-research","industry":"Research services","hq":"Germany","employee_size":null,"linkedin_url":null,"qualification":"UNKNOWN","evidence":"The supplied note mentions robotics; whether the company provides surgical robotics is not established."},
+    {"id":"sample-company-d","name":"Example Surgical Dressings","website":"https://example.com/surgical-dressings","industry":"Medical supplies","hq":"Germany","employee_size":"11-50","linkedin_url":null,"qualification":"NO_MATCH","evidence":"The supplied fictional description concerns dressings and contains no evidence of robotic systems."}
+  ],
+  "contacts": [
+    {"id":"sample-person-a","company_id":"sample-company-a","name":"Alex Example","title":"Engineering Director","management_level":"Director","linkedin_url":null,"role_status":"MATCH","evidence":"The supplied fictional role is engineering leadership; purchasing authority has not been established."},
+    {"id":"sample-person-b","company_id":"sample-company-b","name":"Robin Example","title":"Head of Product Engineering","management_level":"Head","linkedin_url":null,"role_status":"MATCH","evidence":"The supplied fictional role concerns product engineering; ownership of a supplier budget is unknown."},
+    {"id":"sample-person-c","company_id":"sample-company-c","name":"Taylor Example","title":"Research Engineer","management_level":null,"linkedin_url":null,"role_status":"MATCH","evidence":"A relevant role does not resolve the company's unverified product capability."},
+    {"id":"sample-person-d","company_id":"sample-company-a","name":"Jordan Example","title":"Marketing Coordinator","management_level":null,"linkedin_url":null,"role_status":"NO_MATCH","evidence":"The supplied role does not match the requested engineering function."}
+  ]
+}

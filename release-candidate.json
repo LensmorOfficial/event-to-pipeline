@@ -1,0 +1,15 @@
+{
+  "version": "0.5.0-rc.2",
+  "status": "local_candidate",
+  "base_public_commit": "9a0c2f7966085984c142c7049e371522c2054dd2",
+  "canonical_skills_version": "0.7.3",
+  "legacy_skill_count": 15,
+  "research_bundle_skill_count": 6,
+  "html_application": false,
+  "published": false,
+  "support_record": "docs/verification.md",
+  "default_install_skill_count": 7,
+  "project_name": "Event-to-Pipeline",
+  "repository": "https://github.com/LensmorOfficial/event-to-pipeline",
+  "artifact_scope": "local_candidate_zip; repository publication is tracked separately"
+}

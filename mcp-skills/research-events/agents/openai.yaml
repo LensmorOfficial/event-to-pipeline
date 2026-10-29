@@ -1,0 +1,13 @@
+interface:
+  display_name: "Research Lensmor Events"
+  short_description: "Find events with exact audience scope"
+  default_prompt: "Use $research-events to find events matching my stated topic, location, dates, and audience Insights criteria."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "lensmor"
+      description: "Lensmor event and prospect intelligence"
+      transport: "streamable_http"
+      url: "https://platform.lensmor.com/mcp"
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,13 @@
+interface:
+  display_name: "Research Event Exhibitors"
+  short_description: "Browse exhibitors or match them by solution evidence"
+  default_prompt: "Use $research-exhibitors to find exhibitors at my selected event that match these requirements."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "lensmor"
+      description: "Lensmor event and prospect intelligence"
+      transport: "streamable_http"
+      url: "https://platform.lensmor.com/mcp"
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,23 @@
+{
+  "data_mode": "synthetic",
+  "live_data": false,
+  "request": "We provide supplier-research software for medical-device manufacturers. Compare these two supplied fictional German events in the first half of 2027; preserve missing audience data.",
+  "events": [
+    {
+      "name": "Example Medical Devices Expo 2027",
+      "dates": "2027-03-10–2027-03-12",
+      "location": "Germany — fictional edition",
+      "evidence": "The supplied fictional exhibitor brief lists medical-device manufacturers and surgical-device vendors.",
+      "director_plus": {"status": "available", "numerator": 25, "denominator": 100, "unknown_profiles": 20},
+      "assessment": "Prioritize for further account research. This is a saved illustrative judgment based on the supplied vendor focus, not an investment-return forecast."
+    },
+    {
+      "name": "Example General Business Forum 2027",
+      "dates": "2027-04-15–2027-04-16",
+      "location": "Germany — fictional edition",
+      "evidence": "The supplied fictional brief describes a cross-industry event; medical-device coverage is not established.",
+      "director_plus": {"status": "unavailable"},
+      "assessment": "Keep outside the preferred list until vendor-fit evidence is available. Missing metrics are not zero."
+    }
+  ]
+}

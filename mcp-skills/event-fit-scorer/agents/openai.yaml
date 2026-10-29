@@ -1,0 +1,13 @@
+interface:
+  display_name: "Score Event Fit"
+  short_description: "Rank trade shows against product, ICP, region, and goals"
+  default_prompt: "Use $event-fit-scorer to recommend and rank trade shows for my product and ICP."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "lensmor"
+      description: "Lensmor event and exhibitor intelligence"
+      transport: "streamable_http"
+      url: "https://platform.lensmor.com/mcp"
+policy:
+  allow_implicit_invocation: true
