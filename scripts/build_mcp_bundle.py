@@ -140,25 +140,30 @@ def prepare(source, root=ROOT):
 def build(source, root=ROOT, check=False):
     root = Path(root).resolve()
     files, manifest = prepare(source, root)
-    target = root / "mcp-skills"
+    target = root / "skills"
     if target.is_symlink():
         raise ValueError("Output cannot be a symlink.")
-    expected = {**files, "bundle-manifest.json": (json.dumps(manifest, indent=2, ensure_ascii=False) + "\n").encode("utf-8")}
-    existing = {path.relative_to(target).as_posix() for path in target.rglob("*") if path.is_file()} if target.exists() else set()
+    expected = files
+    manifest_path = root / "integrations/mcp/bundle-manifest.json"
+    manifest_bytes = (json.dumps(manifest, indent=2, ensure_ascii=False) + "\n").encode("utf-8")
+    existing = {path.relative_to(target).as_posix() for skill in manifest["skills"]
+                for path in (target / skill["name"]).rglob("*") if path.is_file()}
     if existing - set(expected):
         raise ValueError("Unexpected files in generated bundle; review before regenerating.")
-    for name in expected:
-        destination = target / name
+    for destination in [manifest_path, *(target / name for name in expected)]:
         if any(parent.is_symlink() for parent in [destination, *destination.parents] if parent != root.parent):
             raise ValueError("Output path cannot traverse a symlink.")
     if check:
-        if existing != set(expected) or any((target / name).read_bytes() != content for name, content in expected.items()):
+        if (existing != set(expected) or not manifest_path.is_file()
+                or manifest_path.read_bytes() != manifest_bytes
+                or any((target / name).read_bytes() != content for name, content in expected.items())):
             raise ValueError("Generated bundle differs from the canonical source.")
     else:
         for name, content in expected.items():
             destination = target / name
             destination.parent.mkdir(parents=True, exist_ok=True)
             destination.write_bytes(content)
+        manifest_path.write_bytes(manifest_bytes)
     return manifest
 
 

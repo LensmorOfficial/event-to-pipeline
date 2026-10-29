@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "version": "0.5.0-rc.2",
-  "status": "local_candidate",
+  "version": "0.6.0",
+  "status": "preview",
   "canonical_version": "0.7.3",
   "endpoint": "https://platform.lensmor.com/mcp",
   "mode": "read_only_research",

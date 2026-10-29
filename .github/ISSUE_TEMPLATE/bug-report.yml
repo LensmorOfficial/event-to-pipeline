@@ -12,7 +12,7 @@ body:
     id: skill
     attributes:
       label: Skill name
-      placeholder: trade-show-finder
+      placeholder: event-account-prioritizer
     validations:
       required: true
   - type: textarea

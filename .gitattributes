@@ -1,6 +1,7 @@
-* text=auto
+* text=auto eol=lf
 LICENSE -text
 scripts/export_exhibitors.py -text
-mcp-skills/** -text
+skills/** -text
+integrations/mcp/bundle-manifest.json -text
 examples/**/output.md -text
 examples/**/*.csv -text

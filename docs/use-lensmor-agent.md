@@ -1,6 +1,6 @@
 # Use the existing Lensmor Agent
 
-Use [Lensmor Agent](https://app.lensmor.com/dashboard/agent?utm_source=github&utm_medium=guide&utm_campaign=trade-show-skills&utm_content=agent-entry) if you prefer an existing product over configuring an external client. Sign in using the product's current flow. This is an ordinary navigation link, not an automatic-login or prefilled-chat integration.
+Use [Lensmor Agent](https://app.lensmor.com/dashboard/agent?utm_source=github&utm_medium=guide&utm_campaign=event-to-pipeline&utm_content=agent-entry) if you prefer an existing product over configuring an external client. Sign in using the product's current flow. This is an ordinary navigation link, not an automatic-login or prefilled-chat integration.
 
 ## Start with one bounded task
 
@@ -24,6 +24,6 @@ For drafts, select recipients and supply sender identity, real product facts, ch
 - A coverage statement distinguishing a selected subset, a preview and a complete query.
 - A real file receipt only when the environment successfully saves a file.
 
-Do not assume the generated public bundle has been activated in the hosted Agent. Its deployment uses the product's own versioned release and capabilities. [Verification](verification.md) records what this candidate actually tested; fresh hosted-Agent acceptance remains a separate check.
+Do not assume the generated public bundle has been activated in the hosted Agent. Its deployment uses the product's own versioned release and capabilities. [Verification](verification.md) records what this project has tested; fresh hosted-Agent acceptance remains a separate check.
 
 The [three fictional cases](../examples/README.md) show output shape without requiring an account. They are not screenshots or records of a live Agent run.

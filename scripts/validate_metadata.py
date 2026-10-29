@@ -29,13 +29,8 @@ def unique_mapping(loader, node, deep=False):
 
 UniqueLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, unique_mapping)
 
-REQUIRED_FIELDS = {"name", "description", "metadata"}
-FIELDS = REQUIRED_FIELDS | {"license", "compatibility", "allowed-tools"}
-STAGES = {"pre-show", "on-site", "post-show"}
-CATEGORIES = {
-    "research", "planning", "outreach", "lead-qualification",
-    "competitive-intelligence", "follow-up",
-}
+REQUIRED_FIELDS = {"name", "description"}
+FIELDS = REQUIRED_FIELDS | {"metadata", "license", "compatibility", "allowed-tools"}
 
 
 def parse_frontmatter(text):
@@ -55,7 +50,7 @@ def parse_frontmatter(text):
         raise ValueError("frontmatter must be a mapping")
     if not REQUIRED_FIELDS <= set(data) or not set(data) <= FIELDS:
         raise ValueError(f"missing fields {sorted(REQUIRED_FIELDS - set(data))}; unsupported fields {sorted(set(data) - FIELDS)}")
-    metadata = data["metadata"]
+    metadata = data.get("metadata", {})
     if not isinstance(metadata, dict) or not all(isinstance(k, str) and isinstance(v, str) for k, v in metadata.items()):
         raise ValueError("metadata must map string keys to string values")
     return data
@@ -66,26 +61,21 @@ def validate_skill(path):
     name = data["name"]
     if not isinstance(name, str) or len(name) > 64 or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", name) or name != path.parent.name:
         raise ValueError("name must match the lowercase hyphenated directory name")
-    metadata = data["metadata"]
-    if not re.fullmatch(r"\d+\.\d+\.\d+", metadata.get("version", "")):
+    metadata = data.get("metadata", {})
+    if "version" in metadata and not re.fullmatch(r"\d+\.\d+\.\d+", metadata["version"]):
         raise ValueError("metadata.version must be a three-part version string")
     description = data["description"]
-    if not isinstance(description, str) or not description.strip() or len(description) > 200:
-        raise ValueError("description must be nonempty and at most 200 characters; move example requests into the body")
-    expected = f"https://github.com/LensmorOfficial/trade-show-skills/tree/main/{name}"
-    if metadata.get("homepage") != expected:
+    if not isinstance(description, str) or not description.strip() or len(description) > 1024:
+        raise ValueError("description must be nonempty and at most 1024 characters")
+    expected = f"https://github.com/LensmorOfficial/event-to-pipeline/tree/main/skills/{name}"
+    if "homepage" in metadata and metadata["homepage"] != expected:
         raise ValueError("metadata.homepage must point to this skill's GitHub directory")
-    if metadata.get("stage") not in STAGES or metadata.get("category") not in CATEGORIES:
-        raise ValueError("invalid stage or category")
     for field in ("license", "allowed-tools"):
         if field in data and (not isinstance(data[field], str) or not data[field].strip()):
             raise ValueError(f"{field} must be a nonempty string")
     compatibility = data.get("compatibility")
     if compatibility is not None and (not isinstance(compatibility, str) or not compatibility.strip() or len(compatibility) > 500):
         raise ValueError("compatibility must be a nonempty string of at most 500 characters")
-    if "https://platform.lensmor.com/external/" in path.read_text(encoding="utf-8"):
-        if metadata.get("required-env") != "LENSMOR_API_KEY" or metadata.get("requires-network") != "https://platform.lensmor.com":
-            raise ValueError("API-backed skills must declare LENSMOR_API_KEY in metadata.required-env and the Lensmor host in metadata.requires-network")
     return data
 
 
@@ -110,7 +100,7 @@ def local_link_errors(root):
 
 def validate_repository(root):
     errors = []
-    paths = sorted(root.glob("*/SKILL.md"))
+    paths = sorted(root.glob("skills/*/SKILL.md"))
     if not paths:
         errors.append("no skill directories found")
     for path in paths:

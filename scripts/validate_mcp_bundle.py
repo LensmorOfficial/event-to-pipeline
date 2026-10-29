@@ -16,20 +16,23 @@ def validate(root=ROOT, check_metadata=True):
     if check_metadata:
         import yaml
     root = Path(root)
-    folder = root / "mcp-skills"
-    manifest = json.loads((folder / "bundle-manifest.json").read_text(encoding="utf-8"))
+    folder = root / "skills"
+    manifest = json.loads((root / "integrations/mcp/bundle-manifest.json").read_text(encoding="utf-8"))
     plan = json.loads((root / "integrations/mcp/bundle-plan.json").read_text(encoding="utf-8"))
-    if manifest["mode"] != "read_only_research" or manifest["status"] != "local_candidate":
+    if manifest["mode"] != "read_only_research" or manifest["status"] != "preview":
         raise ValueError("Unexpected bundle scope or release status.")
     if [skill["name"] for skill in manifest["skills"]] != plan["skills"]:
         raise ValueError("Bundle selection differs from the reviewed plan.")
-    actual = {path.relative_to(folder).as_posix() for path in folder.rglob("*") if path.is_file()}
-    expected = {entry["path"] for entry in manifest["files"]} | {"bundle-manifest.json"}
-    required = {f"{name}/{resource}" for name in plan["skills"] for resource in ("SKILL.md", "agents/openai.yaml", "LICENSE")} | {"bundle-manifest.json"}
+    if manifest["version"] != plan["version"]:
+        raise ValueError("Bundle version differs from the reviewed plan.")
+    actual = {path.relative_to(folder).as_posix() for name in plan["skills"]
+              for path in (folder / name).rglob("*") if path.is_file()}
+    expected = {entry["path"] for entry in manifest["files"]}
+    required = {f"{name}/{resource}" for name in plan["skills"] for resource in ("SKILL.md", "agents/openai.yaml", "LICENSE")}
     required |= {"research-exhibitors/scripts/export_exhibitors.py", "research-exhibitors/scripts/LICENSE"}
     if expected != required:
         raise ValueError("Every selected Skill must include its instructions, agent metadata and license.")
-    if actual != expected or len(expected) != len(manifest["files"]) + 1:
+    if actual != expected or len(expected) != len(manifest["files"]):
         raise ValueError("Unexpected, missing or duplicate bundle files.")
     for entry in manifest["files"]:
         relative = Path(entry["path"])

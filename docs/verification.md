@@ -1,66 +1,36 @@
-# Candidate verification
+# Verification
 
-Candidate: `0.5.0-rc.2`. Date: 2026-10-28. Base public commit: `9a0c2f7966085984c142c7049e371522c2054dd2`. This records validation of the local candidate before publication as the Event-to-Pipeline preview. It does not establish production or fresh-client support.
+Project: **Event-to-Pipeline 0.6.0 preview**. Layout update: 2026-10-29.
 
-Publication check on 2026-10-29: the renamed source passed all 52 unit tests and `scripts/validate-repo.sh`, including bundle integrity, worked examples and local Markdown links.
+Local checks passed: 56 tests, all seven Skill entrypoints, research bundle generation, local links and an independently extracted archive installation with offline CSV export. Generated file bytes are preserved across Git checkout.
 
-## What the evidence establishes
+## Reproduce local checks
 
-| Layer | Status | Meaning |
-| --- | --- | --- |
-| Existing public source | Downloaded | The original 15 Skill paths and source contracts are preserved |
-| Canonical research generation | Generated from `0.7.3` | Six selected Skills record source/generated hashes and include ISC licenses |
-| Local metadata, artifacts and tests | Passed | 52 unit tests, the repository quality entry, bundle validation and reproducible example checks passed |
-| Connected-host MCP (rc.1 record) | Read-only smoke calls completed before rc.2 | Event resolution, aggregate Insights, exhibitor research and a bounded contact query completed through the existing connection |
-| Fresh external-client installation and authentication | Not executed | File installation checks do not prove a newly started client's discovery or account flow |
-| Live REST CSV query | Not executed | Public OpenAPI contract checked; HTTP behavior mocked; no real key used |
-| Hosted Lensmor Agent | Not executed | Existing product navigation and instructions are provided; no new hosted deployment is claimed |
-| Purchases and external exports | Not executed | They are outside this research-only candidate |
-
-The earlier rc.1 connected-host smoke used a bounded MEDICA 2026 request. The provider research response included one complete match and four candidates with incomplete evidence in the five returned rows; the latter must not be presented as qualified companies. The bounded engineering-contact query returned no delivered contact rows. These are observations within their scopes, not catalogue-wide coverage or accuracy measurements.
-
-No raw contact data, live handles, tokens, account identifiers or full authenticated query responses are included in the public candidate. The three checked-in worked examples remain fictional and independent of the smoke calls.
-
-## Local commands
-
-Run inside a Python 3.11+ environment with the pinned requirements installed:
+With Python 3.11+ and the development dependency in `scripts/requirements.txt`:
 
 ```bash
-python scripts/validate_metadata.py
-python -m unittest discover -s scripts -p 'test_*.py' -v
-python scripts/validate_mcp_bundle.py
-python scripts/render_examples.py --check
-python scripts/validate_candidate.py
+python scripts/validate_repository.py
+python -m unittest discover -s tests -t .
 ```
 
-The CI entry remains `bash scripts/validate-repo.sh`; it includes the existing documented-contract checks, the complete unit suite and the new candidate validation.
+CI runs the same commands through `bash scripts/validate-repo.sh`. Checks cover all seven Skill entrypoints, local links, six generated research packages and their hashes, portable licenses, reproducible fictional examples, installation conflicts and REST export behavior. Export tests use fictional fixtures and mocked HTTP responses.
 
-Local results on 2026-10-28:
+Packaging is a separate smoke check:
 
-| Check | Result |
+```bash
+python scripts/package_release.py
+```
+
+Inspect the archive, extract it into a fresh directory, and run `scripts/install_skills.py` from that directory. The archive has its own `event-to-pipeline/` root and excludes Git metadata, dependencies, local outputs and previous archives.
+
+## Runtime limits
+
+| Environment | Evidence |
 | --- | --- |
-| Complete unit suite | 52 passed: 16 metadata, 10 worked-example, 13 export and 13 bundle/installation cases |
-| Repository quality entry | Passed through Git Bash with Python 3.13 and the pinned PyYAML dependency |
-| Original root Skills | All 15 directories remain; their packaged files are unchanged from rc.1 |
-| Generated bundle | Six complete research packages, ISC instructions, MIT export helper, file hashes and the 15-tool research allowlist validated |
-| Canonical generation | `--check` passed against source version `0.7.3`; no generated drift |
-| Skill format | Six generated frontmatters parsed; identities, scope note and resource set validated |
-| Default installation | Seven Skills installed in a fresh temporary directory with site packages disabled and PYTHONPATH removed; bundled export script produced three fictional rows |
-| CSV behavior | Filters, pagination, preview boundaries, deduplication, missing data, error handling, formula escaping and existing-file preservation passed |
-| Saved examples and links | Reproducible outputs, exact shortlist CSV correspondence and local Markdown links passed |
+| Offline installation and CSV export | Exercised by tests without third-party packages |
+| Connected development-host MCP | Earlier bounded smoke calls resolved an event, inspected Insights and researched exhibitors; this does not establish fresh-client support |
+| Fresh external client and authentication | Not yet verified end to end |
+| Live REST CSV query | Contract inspected and HTTP behavior mocked; real-key export not yet verified |
+| Hosted Lensmor Agent | Uses its own deployment; end-to-end acceptance not claimed |
 
-Tests used a writable temporary directory outside the source checkout and the pinned PyYAML dependency.
-
-Maintainers with the separately authorized canonical checkout can verify deterministic generation using:
-
-```bash
-python scripts/build_mcp_bundle.py --source PATH --check
-```
-
-End users do not need that private checkout to inspect, install or validate the checked-in bundle.
-
-## Remaining client acceptance
-
-Run the main research task in the selected fresh client and the target hosted Agent. Check real Skill discovery, authentication, exact scope, missing data, unknown company candidates, role relevance and supported file delivery. Publish support only for client versions and environments that complete those checks.
-
-The [product compatibility guide](mcp-compatibility.md) explains backend score versus model assessment, legacy REST actions and shortlist versus directory exports. Passing static checks does not establish those runtime behaviors.
+Research examples are fictional. No raw customer/contact data, account identifiers, live handles or credentials are included. A contact role is evidence of relevance, not proof of buying authority. Preview results and selected shortlists must not be described as complete event directories.

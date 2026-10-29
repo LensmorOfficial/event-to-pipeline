@@ -1,9 +1,9 @@
-# Licensing and source provenance
+# Licensing and provenance
 
-The existing 15 root-level Skills, repository material and newly authored documentation/helpers are covered by the root MIT license unless a file says otherwise.
+Event-to-Pipeline is independently maintained with its own scope, seven-Skill catalogue, installer and release packages.
 
-The six generated research Skills under `mcp-skills/` are derived from Lensmor's canonical Agent Skills source, version `0.7.3`, whose declared license is ISC. Every generated Skill includes its own ISC `LICENSE`, including when copied by the installer. The bundled `research-exhibitors/scripts/` helper is MIT and carries its own license; this does not relicense the ISC instructions.
+Repository documentation, Python helpers and the invitation drafting workflow use the root [MIT license](LICENSE). The invitation workflow was adapted from [Lensmor's trade-show-skills](https://github.com/LensmorOfficial/trade-show-skills) under MIT; that project has its own scope and releases. This source attribution does not create an installation dependency.
 
-`mcp-skills/bundle-manifest.json` records source hashes, generated hashes and the reviewed transformation. It intentionally excludes private repository URLs, absolute maintainer paths, tokens and customer data. To regenerate it, a maintainer supplies a separately authorized canonical checkout using `scripts/build_mcp_bundle.py --source PATH`; end users do not need that checkout.
+The six research Skills in `skills/` were generated from Lensmor's canonical Agent Skills source, version `0.7.3`, under ISC. Each includes its ISC license. The `research-exhibitors/scripts/` export helper is MIT and includes a separate license.
 
-The public scope note limits this candidate to research and explains unbundled action handoffs. The exhibitor Skill additionally documents the optional public REST export helper. The canonical business instructions and UI dependency metadata are otherwise preserved. Review both licenses and the public file list before publishing a release. This repository does not grant access to Lensmor's private service implementation or data.
+[integrations/mcp/bundle-manifest.json](integrations/mcp/bundle-manifest.json) records source hashes, generated hashes and the transformation. Canonical source access is needed only for maintainer regeneration; installation, examples and validation use the checked-in files. Live Lensmor service code and customer data are not included.
