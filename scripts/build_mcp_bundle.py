@@ -99,8 +99,21 @@ def prepare(source, root=ROOT):
                 if not lines or lines[0].strip() != "---":
                     raise ValueError("Missing Skill frontmatter.")
                 end = next(index for index in range(1, len(lines)) if lines[index].strip() == "---")
-                lines.insert(end + 1, "\n> Public research bundle: " + plan["public_scope_note"] + "\n")
                 content = "".join(lines)
+                # Keep public entrypoints focused on the workflow. Tool/runtime
+                # error contracts remain enforced by the connected service.
+                content = re.sub(r"(?m)^A failed tool is not an empty result\..*\n?", "", content)
+                content = re.sub(r"(?ms)^## When all requested data is unavailable\n.*?(?=^## |\Z)", "", content)
+                content = content.replace(
+                    "Use `search_events_v2` only when the user is discovering an event rather than naming one; never use it as an automatic retry for a failed named-event resolution.",
+                    "Use `search_events_v2` for event discovery and `resolve_event` for a named event.")
+                content = content.replace(
+                    "For `DIRECTORY_FALLBACK`, present the rows as accounts to explore and explicitly say capability matching was not established.",
+                    "For `DIRECTORY_FALLBACK`, present the rows as accounts to explore, with capability evidence to review.")
+                content = content.replace(
+                    "When event coverage says the contact directory is locked but the current query says `unlock_required=false`, `remaining_locked_count=0`, and returns zero, report both facts without collapsing them: no match was found in the currently accessible event scope; the current query did not request an unlock; the full locked directory was not verified. Do not claim either that the full event scope has no matches or that access caused the zero result.",
+                    "When event coverage and current-query access describe different scopes, preserve both in the answer. A zero count with `unlock_required=false` and `remaining_locked_count=0` describes the currently accessible query only. Keep that scope distinct from the full event directory and avoid inferring the cause of the zero count.")
+                content = content.rstrip() + "\n\n## Research mode\n\n" + plan["public_scope_note"] + "\n"
                 if name == "research-exhibitors":
                     content = content.rstrip() + "\n" + EXPORT_NOTE
             if re.search(r"[A-Za-z]:[\\/](?:Users|project)[\\/]", content):
@@ -126,7 +139,7 @@ def prepare(source, root=ROOT):
         "generated_from": "Lensmor canonical Agent Skills",
         "canonical_version": catalog["version"],
         "catalog_sha256": digest(catalog_bytes),
-        "transformation": "Normalize LF and add the public-research scope note; append local REST export guidance to research-exhibitors and bundle the MIT helper. Preserve canonical business instructions and UI metadata.",
+        "transformation": "Normalize LF, simplify public workflow prose, and append concise research-mode guidance; append local REST export guidance to research-exhibitors and bundle the MIT helper. Preserve canonical research rules and UI metadata.",
         "mode": plan["mode"],
         "endpoint": plan["endpoint"],
         "license": "ISC; bundled public export helper: MIT",

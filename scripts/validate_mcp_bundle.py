@@ -58,7 +58,7 @@ def validate(root=ROOT, check_metadata=True):
                 data = yaml.safe_load(match.group(1))
                 if data["name"] != path.parent.name or not data.get("description"):
                     raise ValueError("Invalid Skill identity.")
-            if "Public research bundle:" not in raw.decode("utf-8"):
+            if "## Research mode\n" not in raw.decode("utf-8"):
                 raise ValueError("Missing public-scope adaptation.")
     config = tomllib.loads((root / "integrations/mcp/codex.config.example.toml").read_text(encoding="utf-8"))
     server = config["mcp_servers"]["lensmor"]
@@ -66,6 +66,13 @@ def validate(root=ROOT, check_metadata=True):
         raise ValueError("MCP example does not match the research bundle.")
     if any(not tool.startswith(("get_", "list_", "search_", "research_", "resolve_", "discover_")) for tool in server["enabled_tools"]):
         raise ValueError("Action tools are not enabled by the research template.")
+    for filename in ("claude-code.config.example.json", "cursor.config.example.json", "mcp.config.example.json"):
+        template = json.loads((root / "integrations/mcp" / filename).read_text(encoding="utf-8"))
+        entry = template["mcpServers"]["lensmor"]
+        if entry.get("url") != manifest["endpoint"] or set(entry) - {"url", "type"}:
+            raise ValueError(f"MCP endpoint template differs from the bundle: {filename}")
+        if filename == "claude-code.config.example.json" and entry.get("type") != "http":
+            raise ValueError("Claude Code's remote template must use HTTP transport.")
     return manifest
 
 

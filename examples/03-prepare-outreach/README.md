@@ -1,7 +1,9 @@
-# Turn selected research facts into drafts
+# Turn research facts into invitation drafts
 
-Fictional worked example: [input.json](input.json) explicitly selects the two qualified synthetic people from example 2 and supplies limited sender facts. The saved drafts do not claim actual attendance, a booth location, available meeting times, clinical outcomes or customer proof.
+**[Read the complete drafts](output.md)**
 
-Read [output.md](output.md). Each draft includes the personalization basis, subject and complete email. Nothing was sent, booked or purchased.
+This fictional example selects the two engineering contacts from the shortlist and supplies the sender's offer. Each draft includes a personalization basis, subject and complete email.
 
-For real work, use the existing `booth-invitation-writer` with the selected research facts and the user's real event, sender, offer and CTA. If attendance or booth information is unavailable, do not invent an invitation to a booth or a confirmed meeting opportunity. A complete draft does not need an unlocked recipient email address.
+For your own outreach, use `booth-invitation-writer` with selected recipients, sender identity, product facts and a proposed next step. Review the finished copy before sending.
+
+[Fictional sender brief and inputs](input.json)

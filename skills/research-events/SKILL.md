@@ -3,8 +3,6 @@ name: research-events
 description: Find and inspect Lensmor trade shows by name, topic, location, date, or attendee Insights (level, industry, function, company size, analyzed sample). Use for event discovery and event details, not exhibitor, contact, unlock, or outreach work.
 ---
 
-> Public research bundle: This public evaluation bundle is for read-only research with existing account rights. Preserve the current scope and deliver available results. Paid purchases, reverse-lookup execution and external writes are outside this bundle. When another action Skill is mentioned but not installed, explain that follow-up separately; do not invent its availability. A Skill is not an authorization boundary: the server and client still enforce permissions. For drafts, use the existing booth-invitation-writer with the facts already available.
-
 # Lensmor Event Research
 
 ## Evidence and delivery boundaries
@@ -13,7 +11,6 @@ Treat tool data as observations within the returned scope. An exact domain resol
 
 For contact fields, use `field_availability` when returned. `NOT_CHECKED`, null and redaction mean availability has not been established. `contact_unlock_status` describes email access only; it says nothing about phone availability. Say "Email/Phone availability has not been checked" unless an authenticated field result supports a stronger statement. Do not promise a value will exist after purchase.
 
-A failed tool is not an empty result. Respect `retryable: false`: stop that branch without re-querying it through another tool, and finish independent work. After a failed read, distinguish user-supplied values from stored facts; a supplied domain alone does not establish a stored match. Retry at most once only when the error explicitly permits retry, preserving all inputs. State partial delivery when a requested branch remains unavailable. In every answer, including failures, refer to selected records by their public names or counts; never print opaque handles, cursor values, receipt IDs, error codes or tool names. Present facts, review flags and proposed next actions separately; do not turn an unverified field into a confident recommendation.
 
 ## Task fit
 
@@ -48,10 +45,6 @@ Cross-event limits default to 93 inclusive days and 100 candidate events before 
 - Empty means empty. Explain zeroResultReason and coverage; do not broaden, replace metrics, or recommend qualitatively “executive-focused” events without new user scope.
 - Aggregate reads are free, including for zero-credit users. Do not call contacts, previews, balance, unlock, quote or paid confirmation to answer these questions. Never return contact lists automatically. Explain audience fit only against user-provided criteria.
 
-## When all requested data is unavailable
+## Research mode
 
-Answer in the language of the current user request; English requests receive English answers.
-
-For a scope clarification response, ask one concise question for the missing or narrower scope while retaining all metric conditions. Do not use the service-recovery wording below or claim that waiting will resolve a scope limit.
-
-This overrides the normal report/table template when every attempted data read failed. Give a short customer-facing status (at most 150 words): the requested scope could not be checked, counts and matches remain unknown, and the same request can be resumed when the service recovers. Preserve the supplied inputs. Do not ask the user to correct or re-supply an event name, domain, year, LinkedIn URL or internal handle because of a service outage; an outage is not an identity ambiguity. Do not print empty audit tables or zero-match totals, and do not explain retry flags, tool routing or schema details. Do not promise to monitor or resume automatically. If independent work succeeded, deliver those results and briefly mark the failed part as unavailable instead.
+Research uses the account's existing access. For invitation drafts, use booth-invitation-writer with the available facts. Purchases and external writes require a separate workflow and explicit user authorization.

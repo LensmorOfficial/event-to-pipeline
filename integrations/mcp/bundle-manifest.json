@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "version": "0.6.0",
+  "version": "0.6.1",
   "status": "preview",
   "generated_from": "Lensmor canonical Agent Skills",
   "canonical_version": "0.7.3",
   "catalog_sha256": "e90268c00092bf1fb34c174bc3e60e7b620878f6ef0bbedae666a61be9a26a8a",
-  "transformation": "Normalize LF and add the public-research scope note; append local REST export guidance to research-exhibitors and bundle the MIT helper. Preserve canonical business instructions and UI metadata.",
+  "transformation": "Normalize LF, simplify public workflow prose, and append concise research-mode guidance; append local REST export guidance to research-exhibitors and bundle the MIT helper. Preserve canonical research rules and UI metadata.",
   "mode": "read_only_research",
   "endpoint": "https://platform.lensmor.com/mcp",
   "license": "ISC; bundled public export helper: MIT",
@@ -102,7 +102,7 @@
     {
       "path": "event-account-prioritizer/SKILL.md",
       "source_sha256": "a9118e7f057458e4cc56bbdd34e380f6f5784440d38576d370b1e3ac405752f4",
-      "sha256": "dfafe0c65eaff9e4ccb9a009685b02d0a97d7152dd0a918cd38dd95bdf5b57ba"
+      "sha256": "bc988c829c859c7ec54502a8af2c166171705345fbceda57845e0f6a251225c6"
     },
     {
       "path": "event-account-prioritizer/agents/openai.yaml",
@@ -117,7 +117,7 @@
     {
       "path": "event-buying-committee-mapper/SKILL.md",
       "source_sha256": "5e762e04cb586a127317b16baeea526fe249897c5b9a6cf782fbccd8caab52d7",
-      "sha256": "13172e14571b1a155db36a46bc261d2078fa2380fdf3fac02f0d663e72929f02"
+      "sha256": "3e504372b35d8c31a59ba496c5a87453b6a4b3cfe4795dc7bf19e9685cc2259f"
     },
     {
       "path": "event-buying-committee-mapper/agents/openai.yaml",
@@ -132,7 +132,7 @@
     {
       "path": "event-fit-scorer/SKILL.md",
       "source_sha256": "458cd7c8890549051df1c9a8c84acf8b7b7843981365fc6efb9d40c7e09b6eaa",
-      "sha256": "a43a6b1af0a3f4c0c97533ab5680efe5bb32cbd92e6c271cf0945c1123b7042d"
+      "sha256": "4be6b7495c94a7cbf195c8f15dddbf8a490c4242cdc77da53ecdefbeac6fd7da"
     },
     {
       "path": "event-fit-scorer/agents/openai.yaml",
@@ -147,7 +147,7 @@
     {
       "path": "research-events/SKILL.md",
       "source_sha256": "b8a1ac568edbe1552e76bf3112d4cd0919a94c6feda5ea9feda02829da40a765",
-      "sha256": "3e08813e9e4a5bd0763dac39701b74f1c4549cecccd715c022ab0f6df1ff2994"
+      "sha256": "4c3a6ebbf8d7916f6596bec0e2628f2619923c92a004688e7a740a2967b231a8"
     },
     {
       "path": "research-events/agents/openai.yaml",
@@ -162,7 +162,7 @@
     {
       "path": "research-exhibitors/SKILL.md",
       "source_sha256": "b2047173d839f401ab82b1cad95df460f7fda61d79f8ba42d806547c9b625ff1",
-      "sha256": "815455b7c4aa744123f786fc8f379dc57929445db675e904e682ba927a6495d3"
+      "sha256": "7e4d843522f64e62a294e3c3b55933ca28d90c019ae1af914d38d46e9f1b79fb"
     },
     {
       "path": "research-exhibitors/agents/openai.yaml",
@@ -189,7 +189,7 @@
     {
       "path": "research-people/SKILL.md",
       "source_sha256": "3a092fcfdd71c7c9f388965dd5426924d5c83ff1195a846060b13cca45390bb8",
-      "sha256": "02eb5e9b8c62ee81a2042564642c8b829d13556ce6efe4e558f5cc68db69488c"
+      "sha256": "28f58f093d4116b11f89170b9a76ad7db04608ff23e8a0d62e5ed7887680f370"
     },
     {
       "path": "research-people/agents/openai.yaml",

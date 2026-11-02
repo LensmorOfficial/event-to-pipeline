@@ -36,7 +36,7 @@ class WorkedExamplesTests(unittest.TestCase):
             company["qualification"] = "UNKNOWN"
         outputs = render_prospects(self.data)
         self.assertEqual(len(list(csv.reader(io.StringIO(outputs["accounts.csv"].lstrip("\ufeff"))))), 1)
-        self.assertIn("delivered 0 qualified companies", outputs["output.md"])
+        self.assertIn("Selected: 0 companies", outputs["output.md"])
 
     def test_input_order_is_preserved_instead_of_new_undocumented_scoring(self):
         self.data["companies"].reverse()
@@ -78,7 +78,7 @@ class WorkedExamplesTests(unittest.TestCase):
     def test_edition_report_has_no_backend_score_claim(self):
         report = render_events(fixture("01-choose-events"))
         self.assertIn("not the REST API's 0–10 fit score", report)
-        self.assertIn("synthetic fixtures", report)
+        self.assertIn("fictional data", report)
 
 
 if __name__ == "__main__":

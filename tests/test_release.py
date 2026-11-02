@@ -44,7 +44,7 @@ class ReleaseTests(unittest.TestCase):
             path.parent.mkdir()
             path.write_text("Local-only material.")
         archive, receipt = package(self.root)
-        self.assertEqual(archive.name, "event-to-pipeline-0.6.0.zip")
+        self.assertEqual(archive.name, "event-to-pipeline-0.6.1.zip")
         with zipfile.ZipFile(archive) as zipped:
             names = zipped.namelist()
             self.assertTrue(all(name.startswith("event-to-pipeline/") for name in names))

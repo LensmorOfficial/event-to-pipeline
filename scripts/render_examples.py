@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DISCLOSURE = "> Fictional worked example. All events, companies, people, metrics and assessments below are synthetic fixtures, not live Lensmor results.\n"
+DISCLOSURE = "> Illustrative example · fictional data.\n"
 
 
 def cell(value):
@@ -53,7 +53,7 @@ def percent(metric):
 def render_events(data):
     check_fixture(data)
     rows = [[event["name"], event["dates"], event["location"], event["evidence"], percent(event.get("director_plus")), event["assessment"]] for event in data["events"]]
-    return "# Worked example 1: choose an event\n\n" + DISCLOSURE + "\n" + data["request"] + "\n\n" + table(["Event", "Dates", "Location", "Supplied evidence", "Director+ sample metric", "Saved illustrative assessment"], rows) + "\nAssessment source: a saved example of model judgment, not the REST API's 0–10 fit score. This is a two-event candidate comparison, not an exhaustive market search. Missing metrics remain unknown. Confirm real editions and sources before making plans.\n"
+    return "# Worked example 1: choose an event\n\n" + DISCLOSURE + "\n" + data["request"] + "\n\n" + table(["Event", "Dates", "Location", "Supplied evidence", "Director+ sample metric", "Saved illustrative assessment"], rows) + "\nAssessment: saved model judgment, not the REST API's 0–10 fit score.\n"
 
 
 COMPANY_HEADERS = ["Company Name", "Company URL", "Industry", "Company HQ", "Employee Size", "Company LinkedIn URL", "Match evidence"]
@@ -89,9 +89,8 @@ def render_prospects(data):
     excluded = sum(company["qualification"] == "NO_MATCH" for company in data["companies"])
     report = "# Worked example 2: build a researched shortlist\n\n" + DISCLOSURE + "\n" + data["request"] + "\n\n## Companies\n\n" + table(COMPANY_HEADERS, company_rows)
     report += "\n## Related contacts\n\n" + table(PERSON_HEADERS, person_rows)
-    report += f"\nRequested up to {data['requested_limit']}; delivered {len(companies)} qualified companies and {len(people)} role-matching contacts. {unknown} company candidate remains unverified; {excluded} was excluded.\n"
-    report += "\nThe saved fixture order illustrates a selected shortlist, not a backend recommendation score. Company records and role relevance do not establish registered attendance, purchasing authority or purchase intent. Email and phone have not been checked or unlocked. No purchase or outreach occurred.\n"
-    report += "\nThe accompanying accounts.csv and contacts.csv contain exactly these displayed rows in the same order. They are shortlist exports, not full-directory exports.\n"
+    report += f"\nSelected: {len(companies)} companies and {len(people)} relevant contacts. Screening: {unknown} candidate for further research; {excluded} outside the product scope.\n"
+    report += "\nDownload accounts.csv and contacts.csv for the displayed shortlist, in the same order.\n"
     return {"output.md": report, "accounts.csv": csv_content(COMPANY_HEADERS, company_rows), "contacts.csv": csv_content(PERSON_HEADERS, person_rows)}
 
 
@@ -104,7 +103,7 @@ def render_drafts(data, prospects):
         raise ValueError("Saved drafts must exactly match the explicitly selected contacts.")
     if set(chosen) - set(available):
         raise ValueError("A draft recipient is outside the final qualified shortlist.")
-    result = "# Worked example 3: prepare outreach drafts\n\n" + DISCLOSURE + "\n" + data["request"] + "\n\nSender facts supplied in this fictional brief: " + data["sender_facts"] + "\n\nStatus: drafts only. No email or LinkedIn message was sent; no meeting was booked; no contact field was purchased.\n"
+    result = "# Worked example 3: prepare outreach drafts\n\n" + DISCLOSURE + "\n" + data["request"] + "\n\nSender brief: " + data["sender_facts"] + "\n\nStatus: drafts for your review.\n"
     for index, person_id in enumerate(chosen, 1):
         person = available[person_id]
         draft = data["drafts"][person_id]
@@ -112,7 +111,7 @@ def render_drafts(data, prospects):
         result += f"\n## {index}. {cell(person['name'])} — {cell(company['name'])}\n\n"
         result += "Personalization basis: " + person["evidence"] + " " + company["evidence"] + "\n\n"
         result += "Subject: " + draft["subject"] + "\n\n" + draft["body"] + "\n"
-    result += "\nEvidence gaps: actual attendance, meeting availability, booth location and email/phone availability are unknown. The saved copy deliberately does not claim any of those facts. These are illustrative drafts, not an email-delivery integration.\n"
+    result += "\nReview the recipient, sender facts and proposed next step before sending.\n"
     return result
 
 

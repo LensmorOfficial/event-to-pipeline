@@ -60,7 +60,8 @@ class PublicBundleTests(unittest.TestCase):
             self.assertEqual(json.loads(result.stdout)["rows"], 3)
 
     def test_relative_sibling_install_path_is_normalized(self):
-        with tempfile.TemporaryDirectory() as directory:
+        # A relative Windows path requires the source and target on one drive.
+        with tempfile.TemporaryDirectory(dir=ROOT.parent) as directory:
             target = Path(directory) / "skills"
             relative = os.path.relpath(target, Path.cwd())
             receipt = install(relative, dry_run=True)
@@ -99,6 +100,22 @@ class PublicBundleTests(unittest.TestCase):
                 install(target, root=root)
             self.assertFalse(target.exists())
 
+    def test_client_template_endpoint_drift_is_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "candidate"
+            shutil.copytree(ROOT / "skills", root / "skills")
+            shutil.copytree(ROOT / "integrations", root / "integrations")
+            for filename in ("claude-code.config.example.json", "cursor.config.example.json"):
+                with self.subTest(client=filename):
+                    path = root / "integrations/mcp" / filename
+                    original = path.read_bytes()
+                    config = json.loads(original)
+                    config["mcpServers"]["lensmor"]["url"] = "https://example.com/mcp"
+                    path.write_text(json.dumps(config), encoding="utf-8")
+                    with self.assertRaisesRegex(ValueError, "endpoint template"):
+                        validate(root, check_metadata=False)
+                    path.write_bytes(original)
+
     def make_canonical(self, directory):
         source = Path(directory) / "canonical"
         source.mkdir()
@@ -122,10 +139,10 @@ class PublicBundleTests(unittest.TestCase):
             self.assertEqual(first_files, second_files)
             self.assertEqual(first_manifest, second_manifest)
             self.assertTrue(all(row["source_sha256"] for row in first_manifest["files"] if row["path"].endswith("SKILL.md")))
-            self.assertIn("Public research bundle:", first_files["research-events/SKILL.md"].decode())
+            self.assertIn("## Research mode\n", first_files["research-events/SKILL.md"].decode())
 
     def test_generation_accepts_a_relative_sibling_source(self):
-        with tempfile.TemporaryDirectory() as directory:
+        with tempfile.TemporaryDirectory(dir=ROOT.parent) as directory:
             source, _ = self.make_canonical(directory)
             _, manifest = prepare(os.path.relpath(source, Path.cwd()))
             self.assertEqual(len(manifest["skills"]), 6)

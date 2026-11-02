@@ -14,12 +14,19 @@ The seven installable workflows are listed in `project.json` and live under `ski
 
 The six research Skills are generated from Lensmor's canonical Agent Skills source. Maintainers can regenerate them with `python scripts/build_mcp_bundle.py --source PATH`. This updates the research directories and their source manifest while preserving the invitation writer.
 
-## Source packages
+## Source packages and artwork
 
 ```bash
 python scripts/package_release.py
 ```
 
 This creates `dist/event-to-pipeline-VERSION.zip` and `dist/release-files.json` with source-file checksums.
+
+To regenerate the README banner, social image and result replay:
+
+```bash
+python -m pip install -r scripts/requirements-assets.txt
+python scripts/render_assets.py
+```
 
 Preserve the MIT and ISC attribution in [NOTICE](../NOTICE.md), including each Skill's own license.

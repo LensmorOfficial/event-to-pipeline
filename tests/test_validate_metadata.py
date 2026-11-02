@@ -96,6 +96,14 @@ class MetadataTests(unittest.TestCase):
         self.path.write_text('```markdown\n[Company](website)\n```\n`[Template](path)`\n[Web](https://example.com)\n[Anchor](#example)\n')
         self.assertEqual(local_link_errors(self.root), [])
 
+    def test_local_dependency_and_output_links_do_not_block_public_validation(self):
+        for directory in ("test-results", "dist", "node_modules"):
+            path = self.root / directory / "package" / "README.md"
+            path.parent.mkdir(parents=True)
+            path.write_text("[Dependency-only link](missing.md)\n")
+        self.path.write_text("[Public link](missing.md)\n")
+        self.assertEqual(len(local_link_errors(self.root)), 1)
+
 
 if __name__ == "__main__":
     unittest.main()

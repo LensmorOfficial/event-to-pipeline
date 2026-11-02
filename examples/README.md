@@ -1,6 +1,8 @@
-# Three complete worked examples
+# Examples
 
-All three cases are **fictional worked examples**. They use saved synthetic fixtures, not customer data or live query results. Read them without an account; use the [MCP guide](../integrations/mcp/README.md) for actual data.
+Start with the **[live MEDICA 2026 research example](04-medica-live/README.md)**: a real surgical-robotics query, selected account, matching evidence and a 30-second replay.
+
+The three offline cases below use fictional data and run without an account.
 
 | Case | Input and steps | Output |
 | --- | --- | --- |
@@ -8,12 +10,10 @@ All three cases are **fictional worked examples**. They use saved synthetic fixt
 | 2. Research companies and people | [Guide](02-build-shortlist/README.md) · [Fixture](02-build-shortlist/input.json) | [Report](02-build-shortlist/output.md) · [Companies CSV](02-build-shortlist/accounts.csv) · [Contacts CSV](02-build-shortlist/contacts.csv) |
 | 3. Prepare outreach | [Guide](03-prepare-outreach/README.md) · [Fixture](03-prepare-outreach/input.json) | [Complete drafts](03-prepare-outreach/output.md) |
 
-Reproduce the saved artifacts using Python 3.11+:
+Reproduce the offline artifacts with Python 3.11+:
 
 ```bash
 python scripts/render_examples.py
 ```
 
-The script formats the saved assessments and drafts; it does not perform AI research, scrape websites, calculate a new ICP score, authenticate or call an API. The synthetic fixture deliberately includes unknown and nonmatching companies, missing profile links and fewer qualified results than requested.
-
-For live research, connect Lensmor and use your own business brief with the research Skills.
+The renderer formats saved assessments and drafts. To research live data, [connect Lensmor](../integrations/mcp/README.md) and use your own brief.

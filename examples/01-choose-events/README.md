@@ -1,9 +1,9 @@
 # Choose events against a business brief
 
-Fictional worked example: all event names, dates, metrics and assessments in [input.json](input.json) are synthetic.
+Compare two supplied events for a medical-device supplier-research business. The result puts event dates, vendor focus and the audience metric next to the recommendation.
 
-The supplied brief asks for a two-event comparison for medical-device supplier research. One fixture has a Director+ metric of 25 out of 100 profiles, including unknown profiles in that denominator. The other has no available metric.
+**[Read the event comparison](output.md)** · [Fictional input](input.json)
 
-Read [output.md](output.md). A useful output preserves the difference between unavailable and zero and labels the assessment separately from the REST backend score.
+The first event has a Director+ sample of 25 out of 100 profiles. Use that audience evidence alongside the supplied business brief when choosing the next event to research.
 
-For a live MCP task, use `research-events` and, when appropriate, `event-fit-scorer`. Supply the actual country/date scope and keep ordinary topic discovery separate from real audience-metric filtering. Resolve ambiguous editions before comparing. Do not use fictional dates or identities from this fixture in a real query.
+For live research, use `research-events` and `event-fit-scorer` with your country, dates and business goals.

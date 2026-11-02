@@ -82,7 +82,8 @@ def validate_skill(path):
 def local_link_errors(root):
     errors = []
     for path in sorted(root.rglob("*.md")):
-        if any(part.startswith(".") for part in path.relative_to(root).parts):
+        if any(part.startswith(".") or part in {"test-results", "dist", "node_modules", "__pycache__"}
+               for part in path.relative_to(root).parts):
             continue
         # Ignore literal templates in fenced code and inline code.
         text = re.sub(r"(?ms)^(```|~~~).*?^\1[^\n]*$", "", path.read_text(encoding="utf-8"))

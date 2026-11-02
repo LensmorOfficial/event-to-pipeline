@@ -1,8 +1,8 @@
 # Worked example 2: build a researched shortlist
 
-> Fictional worked example. All events, companies, people, metrics and assessments below are synthetic fixtures, not live Lensmor results.
+> Illustrative example · fictional data.
 
-Within the supplied fictional Example Medical Devices Expo 2027 records, find up to five surgical-robotics providers and relevant engineering contacts. Do not broaden the product requirement or unlock contact fields.
+Research surgical-robotics providers and relevant engineering contacts within the supplied fictional Example Medical Devices Expo 2027 records.
 
 ## Companies
 
@@ -15,11 +15,9 @@ Within the supplied fictional Example Medical Devices Expo 2027 records, find up
 
 | Name | Job Title | Company Name | Management Level | LinkedIn URL | Role evidence |
 | --- | --- | --- | --- | --- | --- |
-| Alex Example | Engineering Director | Example Surgical Systems | Director | Not available | The supplied fictional role is engineering leadership; purchasing authority has not been established. |
-| Robin Example | Head of Product Engineering | Example Precision Robotics | Head | Not available | The supplied fictional role concerns product engineering; ownership of a supplier budget is unknown. |
+| Alex Example | Engineering Director | Example Surgical Systems | Director | Not available | Engineering leadership at a surgical-systems provider. |
+| Robin Example | Head of Product Engineering | Example Precision Robotics | Head | Not available | Product engineering responsibilities at a surgical-robotics provider. |
 
-Requested up to 5; delivered 2 qualified companies and 2 role-matching contacts. 1 company candidate remains unverified; 1 was excluded.
+Selected: 2 companies and 2 relevant contacts. Screening: 1 candidate for further research; 1 outside the product scope.
 
-The saved fixture order illustrates a selected shortlist, not a backend recommendation score. Company records and role relevance do not establish registered attendance, purchasing authority or purchase intent. Email and phone have not been checked or unlocked. No purchase or outreach occurred.
-
-The accompanying accounts.csv and contacts.csv contain exactly these displayed rows in the same order. They are shortlist exports, not full-directory exports.
+Download accounts.csv and contacts.csv for the displayed shortlist, in the same order.

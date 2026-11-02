@@ -1,0 +1,57 @@
+{
+  "event": {
+    "name": "MEDICA 2026",
+    "date_start": "2026-11-16",
+    "date_end": "2026-11-19",
+    "city": "Düsseldorf",
+    "country": "Germany",
+    "venue": "Messe Düsseldorf",
+    "url": "https://www.medica-tradefair.com/"
+  },
+  "access": {
+    "mode": "preview",
+    "preview_limit": 50
+  },
+  "returned_candidates": 5,
+  "companies": [
+    {
+      "name": "Weisebot Co., Ltd.",
+      "country": "China",
+      "hq": "Hangzhou, Zhejiang, China",
+      "employee_size": "51-200",
+      "linkedin_url": "https://www.linkedin.com/company/weisebot",
+      "description": "WeiseBot is a surgical robotics company focused on developing advanced minimally invasive technologies. It is based in Hangzhou and describes itself as a pioneer and innovator in surgical robotics.",
+      "qualification": "MATCH",
+      "match_evidence": [
+        "surgical robotics: description"
+      ]
+    },
+    {
+      "name": "ACCREA Medical Robotics Sp. z o.o.",
+      "country": "Poland",
+      "hq": "Lublin, Poland",
+      "employee_size": "11-50",
+      "linkedin_url": "https://www.linkedin.com/company/accrea-medical-robotics",
+      "description": "Medical robotics company developing surgical and assistive robotic systems, including AVROS-P, BATEO, EAZYMOVE, and ARIA-MED.",
+      "qualification": "UNKNOWN",
+      "match_evidence": [
+        "surgical robotics: partial terms surgical, robotics, robotic in company_name, description; complete concept requires evidence review"
+      ]
+    },
+    {
+      "name": "Agilis Robotics Limited",
+      "country": "China",
+      "hq": "Hong Kong, China",
+      "employee_size": "11-50",
+      "linkedin_url": "https://www.linkedin.com/company/agilisrobotics",
+      "description": "Agilis Robotics Limited is a Hong Kong-based startup developing highly miniaturized, flexible robotic instruments for endoluminal and endoscopic surgery. The company focuses on minimally invasive surgical robots that integrate with existing clinical workflows and help clinicians perform precise procedures.",
+      "qualification": "UNKNOWN",
+      "match_evidence": [
+        "surgical robotics: partial terms surgical, robotics, robotic in company_name, description; complete concept requires evidence review"
+      ]
+    }
+  ],
+  "selection_rule": "Only MATCH enters the selected account list; UNKNOWN stays in review.",
+  "as_of": "2026-11-02",
+  "request": "Find surgical-robotics providers at MEDICA 2026. Return a shortlist with evidence for each company and keep candidates needing review separate."
+}
