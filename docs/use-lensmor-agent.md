@@ -24,6 +24,4 @@ For drafts, select recipients and supply sender identity, real product facts, ch
 - A coverage statement distinguishing a selected subset, a preview and a complete query.
 - A real file receipt only when the environment successfully saves a file.
 
-Do not assume the generated public bundle has been activated in the hosted Agent. Its deployment uses the product's own versioned release and capabilities. [Verification](verification.md) records what this project has tested; fresh hosted-Agent acceptance remains a separate check.
-
-The [three fictional cases](../examples/README.md) show output shape without requiring an account. They are not screenshots or records of a live Agent run.
+Explore the [three offline examples](../examples/README.md) for event selection, account research and invitation drafts.

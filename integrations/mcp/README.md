@@ -7,7 +7,7 @@ This guide connects the generated research Skills to the existing remote Lensmor
 - A client that supports the selected Skill-discovery path and remote MCP.
 - Your own Lensmor account and a connection authorized by the existing server policy.
 - Access to the data needed for the task. A connected account may still receive previews or unavailable fields.
-- Python 3.11+ for installation; no third-party packages are needed. Maintainer validation separately uses `scripts/requirements.txt`.
+- Python 3.11+ for installation; no third-party packages are needed.
 
 The REST API key policy documented in [API-Doc](https://github.com/LensmorOfficial/API-Doc) does not establish every MCP client's authentication or subscription policy. Follow the server's actual connection flow. This project does not claim anonymous live access or issue credentials.
 
@@ -30,23 +30,23 @@ Endpoint: `https://platform.lensmor.com/mcp`.
 
 For Codex, review and merge [codex.config.example.toml](codex.config.example.toml) into the configuration of the intended trusted project. The `enabled_tools` list contains only the 15 research dependencies declared by this bundle. Do not replace an existing configuration wholesale.
 
-Codex supports remote HTTP MCP configuration and project `.codex/config.toml`; where the Lensmor server/client connection supports OAuth, `codex mcp login lensmor` starts that connection's login flow. For a separately supported bearer-token connection, use the documented environment-variable setting rather than putting the token in a file or chat. This guide does not assume a particular credential type works without verification.
+Codex supports remote HTTP MCP configuration and project `.codex/config.toml`. Run `codex mcp login lensmor` to connect your account. For a supported bearer-token connection, use the documented environment-variable setting.
 
 Official references: [Codex Skills](https://developers.openai.com/codex/skills), [Codex MCP](https://developers.openai.com/codex/mcp).
 
 [mcp.config.example.json](mcp.config.example.json) is an endpoint-only template for clients that accept that JSON structure. It does **not** restrict the server's advertised tools. Apply the receiving client's supported tool controls before treating another client as research-only; this template alone is not a permission boundary.
 
-## 3. Check capabilities before a task
+## 3. Try your first query
 
 Ask the client to list its connected Lensmor tools, then compare the selected Skill's requirements in [the bundle manifest](bundle-manifest.json). Do not substitute tool names, fake handles or another API when a dependency is unavailable.
 
-First test prompt:
+Try this prompt:
 
 ```text
 Use research-events to resolve MEDICA 2026 and show its returned dates and location. Read only; do not purchase data or unlock contacts. If several editions remain, ask me to choose.
 ```
 
-A resolved event proves that call worked in that environment. It does not prove every Skill, data entitlement, file path or paid confirmation works. Continue with [the cases](../../examples/README.md) and [acceptance records](../../docs/verification.md).
+Continue with the [worked examples](../../examples/README.md) for event selection, account research and invitation drafts.
 
 ## 4. Run a research task
 

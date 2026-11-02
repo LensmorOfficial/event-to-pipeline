@@ -1,36 +1,25 @@
 # Contributing to Event-to-Pipeline
 
-Keep contributions focused on event research, company/contact discovery, outreach drafts and reusable data integrations.
+Help improve event research, company and contact discovery, invitation drafts and reusable data integrations.
 
-## Structure
+## Suggest a workflow
 
-- `skills/`: the seven installable workflows listed in `project.json`.
-- `integrations/mcp/`: connection templates and the six-Skill research bundle's generation plan and manifest.
-- `scripts/`: installation, CSV export, examples, validation and packaging.
-- `tests/`: behavioral checks for installation, export, metadata and distribution.
-- `examples/`: fictional end-to-end cases.
-- `docs/`: setup references and verification limits.
+Open an issue with the business problem, the information a user would provide and an example of the result they need. Use fictional company and contact data when sharing examples.
 
-Keep Skills self-contained. Preserve unknown fields, source evidence and the user's scope. Drafting must not fabricate product claims or send messages. Use fictional fixtures in examples and tests.
+## Improve an existing Skill
 
-The six research Skills are generated from Lensmor's separately maintained canonical source. Maintainers can regenerate them with `python scripts/build_mcp_bundle.py --source PATH`; add `--check` to verify reproducibility. This updates only those six directories and their manifest, preserving the invitation writer. Users need only this repository to install, run the offline examples or validate it.
+Keep each Skill self-contained, preserve the user's research scope and support company selections with evidence. Draft invitations from supplied sender and product facts. Maintain both README languages when changing public usage.
 
-When changing scope, update `project.json`, the installer, documentation and tests together. Each Skill must have its own license. Preserve the MIT/ISC attribution in [NOTICE](../NOTICE.md).
+The seven installable workflows are listed in `project.json` and live under `skills/`. Client connection guides are in `integrations/mcp/`, worked examples in `examples/`, and user references in `docs/`.
 
-## Validate
+The six research Skills are generated from Lensmor's canonical Agent Skills source. Maintainers can regenerate them with `python scripts/build_mcp_bundle.py --source PATH`. This updates the research directories and their source manifest while preserving the invitation writer.
 
-Use Python 3.11+ and install `scripts/requirements.txt` into a development environment:
-
-```bash
-python -m pip install -r scripts/requirements.txt
-python scripts/validate_repository.py
-python -m unittest discover -s tests -t .
-```
-
-The same checks run through `bash scripts/validate-repo.sh` in CI. For a local source archive:
+## Source packages
 
 ```bash
 python scripts/package_release.py
 ```
 
-This writes `dist/event-to-pipeline-VERSION.zip` and a hash receipt; it does not publish a GitHub release. Include relevant validation results in your pull request. Maintain both README languages when changing public usage.
+This creates `dist/event-to-pipeline-VERSION.zip` and `dist/release-files.json` with source-file checksums.
+
+Preserve the MIT and ISC attribution in [NOTICE](../NOTICE.md), including each Skill's own license.

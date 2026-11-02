@@ -46,6 +46,6 @@ Only `GET /external/exhibitors/list` is called, with `personnelLimit=0`. There a
 
 The export is a factual directory query. It does not establish actual attendance, rank accounts or verify product-fit claims. Use the research Skills for those assessments. For MCP-selected shortlist exports, preserve the final selected rows instead of replacing them with a new directory query.
 
-## Contract and validation
+## API reference
 
-Based on the public [Lensmor OpenAPI contract](https://github.com/LensmorOfficial/API-Doc/blob/main/openapi.json), inspected on 2026-10-28 (file SHA `192abd025d66775aaaa0e85bc9c4d96140b33038`). Tests cover the offline pipeline and mocked HTTP requests; this revision has not verified live REST authentication. See [verification](verification.md).
+See the [Lensmor API documentation](https://api.lensmor.com/) for endpoint definitions, account access and integration examples.

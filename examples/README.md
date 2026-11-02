@@ -12,9 +12,8 @@ Reproduce the saved artifacts using Python 3.11+:
 
 ```bash
 python scripts/render_examples.py
-python scripts/render_examples.py --check
 ```
 
 The script formats the saved assessments and drafts; it does not perform AI research, scrape websites, calculate a new ICP score, authenticate or call an API. The synthetic fixture deliberately includes unknown and nonmatching companies, missing profile links and fewer qualified results than requested.
 
-For a real run, use actual user facts and returned tool data. Do not treat these example IDs, URLs or event dates as production inputs. Read [verification](../docs/verification.md) for the distinct live checks performed.
+For live research, connect Lensmor and use your own business brief with the research Skills.

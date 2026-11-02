@@ -59,7 +59,7 @@ python scripts/export_exhibitors.py --event-id EVENT_ID --country Germany --max-
 ```text
 event-to-pipeline/
 ├── skills/          # 7 个可独立安装的核心 Skills
-├── scripts/         # 安装、导出、验证和打包脚本
+├── scripts/         # 安装、导出和打包脚本
 ├── integrations/    # MCP 配置与研究技能来源记录
 ├── examples/        # 三个完整案例和离线导出样例
 ├── docs/            # 使用参考、贡献指南和更新日志
@@ -68,6 +68,6 @@ event-to-pipeline/
 └── project.json     # 项目版本和技能目录
 ```
 
-本仓库独立维护自己的功能范围、安装流程和发布包。当前为预览版 **0.6.0**；实际验证范围和待完成事项见[验证记录](docs/verification.md)。邀约只生成草稿，需要审核后再发送。
+本仓库独立维护自己的功能范围、安装流程和发布包。当前为预览版 **0.6.0**。邀约只生成草稿，需要审核后再发送。
 
 [贡献指南](docs/CONTRIBUTING.md) · [更新日志](docs/CHANGELOG.md) · [许可证与来源说明](NOTICE.md)

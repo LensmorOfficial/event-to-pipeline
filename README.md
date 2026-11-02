@@ -84,6 +84,6 @@ event-to-pipeline/
 
 ## Status and contributing
 
-**Preview `0.6.0`**. See [verification and remaining client checks](docs/verification.md), [changelog](docs/CHANGELOG.md) and [contributing](docs/CONTRIBUTING.md).
+**Preview `0.6.0`**. See the [changelog](docs/CHANGELOG.md) and [contributing guide](docs/CONTRIBUTING.md).
 
 Live data is provided by [Lensmor](https://www.lensmor.com/) under your account's access and [API policy](https://github.com/LensmorOfficial/API-Doc). Helpers and invitation drafting use [MIT](LICENSE); the six research Skills use ISC. [Licensing and provenance](NOTICE.md).
