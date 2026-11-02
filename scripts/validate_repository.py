@@ -11,7 +11,7 @@ from validate_mcp_bundle import ROOT, validate
 from validate_metadata import validate_repository
 
 
-EXCLUDED = {".git", ".qa-deps", ".venv", "__pycache__", "dist", "test-results"}
+EXCLUDED = {".git", ".qa-deps", ".venv", "__pycache__", "dist", "test-results", "node_modules"}
 
 
 def public_files(root=ROOT):

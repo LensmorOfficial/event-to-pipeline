@@ -1,9 +1,9 @@
-# From an event to target companies and related people
+# From an event to target companies and people
 
-Fictional worked example: [input.json](input.json) contains four synthetic companies and four synthetic people. The requested limit is five; only two companies have complete product evidence. An unknown company and an unrelated product provider stay outside the final shortlist.
+**[Read the researched shortlist](output.md)** · [Companies CSV](accounts.csv) · [Contacts CSV](contacts.csv)
 
-Read [output.md](output.md), [accounts.csv](accounts.csv) and [contacts.csv](contacts.csv). The CSVs contain exactly the displayed shortlists in the same order. They do not claim to export an entire event directory.
+The fictional input contains four companies and four people. The selected list includes the two providers with complete surgical-robotics evidence and their relevant engineering contacts. Each row includes the reason for selection.
 
-For a live task, use `event-account-prioritizer` with the actual resolved event and business conditions. Only after choosing a role, use `event-buying-committee-mapper` or the people foundation. Preserve actual profile fields, returned product-size ranges, evidence and missing information. A role match does not establish attendance or purchasing authority.
+For live research, use `event-account-prioritizer` with the selected event and your product requirement. Then choose the contact roles you need and use `event-buying-committee-mapper`.
 
-No field unlock, purchase, external export or outreach occurs in this example. Contact profile links remain unavailable rather than fabricated.
+[Fictional input](input.json) · [Real MEDICA example](../04-medica-live/README.md)

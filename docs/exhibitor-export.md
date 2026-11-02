@@ -42,7 +42,7 @@ Only `GET /external/exhibitors/list` is called, with `personnelLimit=0`. There a
 - `query_exhausted`: full access, pagination ended, stable reported total matches exported rows. Completeness applies only to this filtered query at run time.
 - `max_pages`: the requested page budget ended; more results may exist.
 - `access_limit`, `access_limit_unknown`, `access_unknown`, `page_inaccessible`: account scope or missing access information stopped further requests.
-- `visible_results_exhausted`: the visible response ended, but full-query completeness is not established; inspect the receipt's access, totals and processing state.
+- `visible_results_exhausted`: the visible page sequence has ended; use the receipt's access, totals and processing state to determine the full-query scope.
 
 The export is a factual directory query. It does not establish actual attendance, rank accounts or verify product-fit claims. Use the research Skills for those assessments. For MCP-selected shortlist exports, preserve the final selected rows instead of replacing them with a new directory query.
 

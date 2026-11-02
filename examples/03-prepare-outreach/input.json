@@ -1,9 +1,12 @@
 {
   "data_mode": "synthetic",
   "live_data": false,
-  "request": "Prepare English email drafts for the two selected contacts from worked example 2. Offer a short exchange on supplier evaluation criteria. Actual attendance and booth information are unknown.",
-  "sender_facts": "The fictional sender, Casey at Example Vendor Research, offers software that organizes supplier evaluation notes. No clinical benefit, savings percentage or customer case study is supplied.",
-  "selected_contact_ids": ["sample-person-a", "sample-person-b"],
+  "request": "Prepare English email drafts for the two selected contacts from worked example 2. Offer a short exchange on supplier evaluation criteria.",
+  "sender_facts": "Casey at Example Vendor Research offers software that organizes supplier evaluation notes.",
+  "selected_contact_ids": [
+    "sample-person-a",
+    "sample-person-b"
+  ],
   "drafts": {
     "sample-person-a": {
       "subject": "supplier evaluation notes",

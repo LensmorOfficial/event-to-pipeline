@@ -1,78 +1,121 @@
-# Connect the Lensmor research workflows
+# Connect Lensmor to your AI client
 
-This guide connects the generated research Skills to the existing remote Lensmor service. It does not deploy a server, change an account plan or enable financial operations.
+**Endpoint:** `https://platform.lensmor.com/mcp`
 
-## Prerequisites
+Install the Skills into your target project, then connect Lensmor in your client. [Create an account](https://app.lensmor.com/signup?utm_source=github&utm_medium=guide&utm_campaign=event-to-pipeline&utm_content=mcp-setup) to get started. Python export uses a separate [REST API key](../../README.md#get-access).
 
-- A client that supports the selected Skill-discovery path and remote MCP.
-- Your own Lensmor account and a connection authorized by the existing server policy.
-- Access to the data needed for the task. A connected account may still receive previews or unavailable fields.
-- Python 3.11+ for installation; no third-party packages are needed.
+| Client | Project Skills directory | MCP setup |
+| --- | --- | --- |
+| Claude Code | `.claude/skills/` | CLI command below |
+| Codex | `.agents/skills/` | Project `.codex/config.toml` |
+| Cursor | `.cursor/skills/` | Project `.cursor/mcp.json` |
+| Claude Desktop | Claude's Skills settings | Custom remote connector |
 
-The REST API key policy documented in [API-Doc](https://github.com/LensmorOfficial/API-Doc) does not establish every MCP client's authentication or subscription policy. Follow the server's actual connection flow. This project does not claim anonymous live access or issue credentials.
+## Claude Code
 
-## 1. Install the default seven Skills
-
-From this checkout, choose a separate project:
+From your target project, with Node.js 22.20+:
 
 ```bash
-python scripts/install_skills.py --destination ../my-project/.agents/skills --dry-run
-python scripts/install_skills.py --destination ../my-project/.agents/skills
+npx skills add LensmorOfficial/event-to-pipeline --skill '*' --agent claude-code --copy
+claude mcp add --transport http lensmor https://platform.lensmor.com/mcp
 ```
 
-Inspect the dry-run paths. The second command copies six research Skill directories and `booth-invitation-writer`, including resources and licenses; it never edits client configuration or overwrites an existing Skill. If a conflict exists, choose another destination or review the existing installation yourself. A filesystem failure is reported as failure and can leave a partial copy; reruns do not replace those files.
-
-The exhibitor Skill also includes the standalone REST CSV helper. Use it only when a REST key is available; MCP authentication does not provide that key. See [CSV export](../../docs/exhibitor-export.md).
-
-## 2. Configure the existing remote MCP
-
-Endpoint: `https://platform.lensmor.com/mcp`.
-
-For Codex, review and merge [codex.config.example.toml](codex.config.example.toml) into the configuration of the intended trusted project. The `enabled_tools` list contains only the 15 research dependencies declared by this bundle. Do not replace an existing configuration wholesale.
-
-Codex supports remote HTTP MCP configuration and project `.codex/config.toml`. Run `codex mcp login lensmor` to connect your account. For a supported bearer-token connection, use the documented environment-variable setting.
-
-Official references: [Codex Skills](https://developers.openai.com/codex/skills), [Codex MCP](https://developers.openai.com/codex/mcp).
-
-[mcp.config.example.json](mcp.config.example.json) is an endpoint-only template for clients that accept that JSON structure. It does **not** restrict the server's advertised tools. Apply the receiving client's supported tool controls before treating another client as research-only; this template alone is not a permission boundary.
-
-## 3. Try your first query
-
-Ask the client to list its connected Lensmor tools, then compare the selected Skill's requirements in [the bundle manifest](bundle-manifest.json). Do not substitute tool names, fake handles or another API when a dependency is unavailable.
-
-Try this prompt:
+Start Claude Code in that project and use `/mcp` to inspect the connection. Ask:
 
 ```text
-Use research-events to resolve MEDICA 2026 and show its returned dates and location. Read only; do not purchase data or unlock contacts. If several editions remain, ask me to choose.
+Use research-events to find MEDICA 2026 and show its dates and location.
 ```
 
-Continue with the [worked examples](../../examples/README.md) for event selection, account research and invitation drafts.
+For a connection shared with your project, use:
 
-## 4. Run a research task
+```bash
+claude mcp add --transport http --scope project lensmor https://platform.lensmor.com/mcp
+```
+
+This writes `.mcp.json`; [claude-code.config.example.json](claude-code.config.example.json) shows its structure. The default command uses local scope. Select research tools using Claude Code's tool permission controls.
+
+Official references: [MCP](https://code.claude.com/docs/en/mcp), [Skills](https://code.claude.com/docs/en/skills).
+
+## Codex
+
+From your target project:
+
+```bash
+npx skills add LensmorOfficial/event-to-pipeline --skill '*' --agent codex --copy
+```
+
+Merge [codex.config.example.toml](codex.config.example.toml) into the project's `.codex/config.toml`. It selects the 15 research tools declared in [the manifest](bundle-manifest.json).
+
+Trust the project, then connect your account:
+
+```bash
+codex mcp login lensmor
+```
+
+Start Codex, inspect the connection with `/mcp`, and try the MEDICA prompt above.
+
+Official references: [Codex MCP](https://developers.openai.com/codex/mcp), [Codex Skills](https://developers.openai.com/codex/skills).
+
+## Cursor
+
+From your target project:
+
+```bash
+npx skills add LensmorOfficial/event-to-pipeline --skill '*' --agent cursor --copy
+```
+
+Merge this into `.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "lensmor": {
+      "url": "https://platform.lensmor.com/mcp"
+    }
+  }
+}
+```
+
+Enable Lensmor in Cursor's MCP settings and complete the connection flow it presents. In Agent chat, select a Skill and run the MEDICA prompt. Use Cursor's tool controls to select the research tools for your task.
+
+Template: [cursor.config.example.json](cursor.config.example.json). Official references: [Cursor MCP](https://cursor.com/docs/context/mcp), [Cursor Skills](https://cursor.com/docs/context/skills).
+
+## Claude Desktop
+
+1. Open **Customize → Connectors** and add a custom remote connector named **Lensmor**.
+2. Enter `https://platform.lensmor.com/mcp` as the URL and complete the connection flow shown by Claude.
+3. Enable Lensmor in a conversation and ask for MEDICA 2026's dates and location.
+4. Enable **Code execution and file creation** in Claude's capabilities settings. In a local checkout, package one Skill, for example:
+
+   ```bash
+   python -c "import shutil; shutil.make_archive('dist/research-events', 'zip', 'skills', 'research-events')"
+   ```
+
+5. Open **Customize → Skills → Upload a skill**, upload `dist/research-events.zip`, and enable it. For another workflow, replace `research-events` in the command with its directory name under [`skills/`](../../skills/). Each ZIP contains one Skill directory with `SKILL.md` and its resources.
+
+Team and Enterprise administrators can add the connector in their organization's settings. Official guides: [Remote connectors](https://support.claude.com/en/articles/11175166-getting-started-with-custom-connectors-using-remote-mcp), [Skills settings](https://support.claude.com/en/articles/12512180-use-skills-in-claude), [Skill ZIP structure](https://support.claude.com/en/articles/12512198-how-to-create-custom-skills).
+
+## Python installation alternative
+
+With Python 3.11+, clone or extract this repository, then install into a separate target project:
+
+```bash
+python scripts/install_skills.py --destination ../my-project/.claude/skills --dry-run
+python scripts/install_skills.py --destination ../my-project/.claude/skills
+```
+
+For Codex use `../my-project/.agents/skills`; for Cursor use `../my-project/.cursor/skills`. The installer copies all seven Skills, resources and licenses, and preserves existing Skills. Configure MCP using the client section above.
+
+The [Skills CLI](https://github.com/vercel-labs/skills) also supports interactive selection of individual Skills and installs to the current project by default.
+
+## Run a research workflow
 
 ```text
-Use event-account-prioritizer to research up to 10 surgical-robotics providers at MEDICA 2026. Preserve that complete capability requirement. Separate qualified companies from candidates still needing evidence; do not buy more data.
+Use event-account-prioritizer to research surgical-robotics providers at
+MEDICA 2026. Give me the selected companies and evidence for each match.
+Keep candidates needing review separate and use existing account access.
 ```
 
-Then specify a relevant contact role before using `event-buying-committee-mapper`. Reuse already resolved scope. For drafts, select recipients and provide sender facts to `booth-invitation-writer`; an unknown email address does not prevent preparing a draft.
+Then specify the contact roles you need. For invitations, select recipients and give `booth-invitation-writer` your sender identity, product facts and proposed next step.
 
-The default installer already includes the drafting Skill; no extra copy step is needed.
-
-## Files and actions
-
-This research-only configuration does not enable `create_data_export`, purchases, contact-field unlocks, reverse-lookup execution or third-party exports. A client with a verified local file mechanism may save exactly the final shortlist at the user's request. Lensmor Agent can use its own supported Files integration.
-
-A separately authorized full-query export requires the existing server tool, scopes, data rights and exact original filters. Do not label that broader directory as a model-selected shortlist. If file storage is unavailable, deliver the table and explain the limit instead of inventing a download.
-
-## Troubleshooting
-
-| Symptom | Next step |
-| --- | --- |
-| Skill not discovered | Check the client's actual discovery directory and metadata; refresh or restart only if needed |
-| Authentication required | Reconnect through the supported account flow; do not repeat the same failed query |
-| Required tool missing | Check the selected connection/version; keep the affected workflow unavailable |
-| Ambiguous event/company | Present the returned candidates and ask for the intended identity |
-| Preview or locked fields | Preserve the returned scope; no automatic purchase |
-| Missing audience metric | Mark unavailable; do not estimate from visible contacts |
-| Service failure | Preserve inputs and report that branch as unchecked, not empty |
-| No file capability | Return a usable table with the limitation |
+Research uses your account's available data. The Codex configuration selects research tools; JSON templates configure the endpoint, while the receiving client controls tool permissions. MCP access and `LENSMOR_API_KEY` are separate credentials. [Real MEDICA example](../../examples/04-medica-live/README.md).

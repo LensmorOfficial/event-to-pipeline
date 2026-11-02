@@ -3,8 +3,6 @@ name: event-fit-scorer
 description: Recommend, rank, or compare trade shows against a company's product, ICP, target region, timing, and event-GTM objective using Lensmor event and exhibitor evidence. Use for questions such as which events to attend or which named show is the better fit; not for choosing accounts inside one event, annual portfolio optimization, unlocking data, or competitor attendance history.
 ---
 
-> Public research bundle: This public evaluation bundle is for read-only research with existing account rights. Preserve the current scope and deliver available results. Paid purchases, reverse-lookup execution and external writes are outside this bundle. When another action Skill is mentioned but not installed, explain that follow-up separately; do not invent its availability. A Skill is not an authorization boundary: the server and client still enforce permissions. For drafts, use the existing booth-invitation-writer with the facts already available.
-
 # Event Fit Scorer
 
 Rank trade shows against one consistent, evidence-backed fit rubric. Use the logical Lensmor tool names below; the host assigns their runtime namespace.
@@ -15,7 +13,6 @@ Treat tool data as observations within the returned scope. An exact domain resol
 
 For contact fields, use `field_availability` when returned. `NOT_CHECKED`, null and redaction mean availability has not been established. `contact_unlock_status` describes email access only; it says nothing about phone availability. Say "Email/Phone availability has not been checked" unless an authenticated field result supports a stronger statement. Do not promise a value will exist after purchase.
 
-A failed tool is not an empty result. Respect `retryable: false`: stop that branch without re-querying it through another tool, and finish independent work. After a failed read, distinguish user-supplied values from stored facts; a supplied domain alone does not establish a stored match. Retry at most once only when the error explicitly permits retry, preserving all inputs. State partial delivery when a requested branch remains unavailable. In every answer, including failures, refer to selected records by their public names or counts; never print opaque handles, cursor values, receipt IDs, error codes or tool names. Present facts, review flags and proposed next actions separately; do not turn an unverified field into a confident recommendation.
 
 ## Scope
 
@@ -94,8 +91,6 @@ After the table:
 
 Do not include internal Tool names, status codes, handles, cursors, Skill rules, or validation language in the user-facing answer.
 
-## When all requested data is unavailable
+## Research mode
 
-Answer in the language of the current user request; English requests receive English answers.
-
-This overrides the normal report/table template when every attempted data read failed. Give a short customer-facing status (at most 150 words): the requested scope could not be checked, counts and matches remain unknown, and the same request can be resumed when the service recovers. Preserve the supplied inputs. Do not ask the user to correct or re-supply an event name, domain, year, LinkedIn URL or internal handle because of a service outage; an outage is not an identity ambiguity. Do not print empty audit tables or zero-match totals, and do not explain retry flags, tool routing or schema details. Do not promise to monitor or resume automatically. If independent work succeeded, deliver those results and briefly mark the failed part as unavailable instead.
+Research uses the account's existing access. For invitation drafts, use booth-invitation-writer with the available facts. Purchases and external writes require a separate workflow and explicit user authorization.

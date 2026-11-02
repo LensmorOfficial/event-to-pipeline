@@ -24,4 +24,4 @@ For drafts, select recipients and supply sender identity, real product facts, ch
 - A coverage statement distinguishing a selected subset, a preview and a complete query.
 - A real file receipt only when the environment successfully saves a file.
 
-Explore the [three offline examples](../examples/README.md) for event selection, account research and invitation drafts.
+See the [real MEDICA research result](../examples/04-medica-live/README.md) or explore the [three offline cases](../examples/README.md) for event selection, account research and invitation drafts.
