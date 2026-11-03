@@ -4,7 +4,7 @@
 
 Find the right events, identify companies that fit your product, find relevant people, and draft a useful first message. Seven Agent Skills connect your AI client to Lensmor's live event and company data.
 
-![Event-to-Pipeline: from event to target accounts](assets/readme-banner.png)
+![Event-to-Pipeline: from event to target accounts](assets/readme-banner.jpg)
 
 [![Preview 0.6.1](https://img.shields.io/badge/preview-0.6.1-2563eb)](docs/CHANGELOG.md)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-3776ab)](docs/exhibitor-export.md)
